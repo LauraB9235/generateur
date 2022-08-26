@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emajine_specif>
+  <!--@changelog 2019-10-02 [OPTIM] (Hasina) Optimisation des fonctionnalités - Générateur d'add-ons - Medialibs-->
+  <libelle/>
+  <parent>13</parent>
+  <script>addons/test/class/menus/new/menuNew.class.php</script>
+</emajine_specif>

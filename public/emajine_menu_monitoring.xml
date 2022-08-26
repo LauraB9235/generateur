@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emajine_specif>
+  <libelle>Monitoring</libelle>
+  <parent>43</parent>
+  <script>addons/test2/class/menus/monitoring/menuMonitoring.class.php</script>
+</emajine_specif>

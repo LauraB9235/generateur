@@ -1,0 +1,33 @@
+<mx:bloc id="searchBloc">
+    <mx:text id="search" />
+</mx:bloc id="searchBloc"><br>
+<mx:bloc id="members">
+    <table id = 'table' class="order-table table">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Identifiant</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Date de création</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <mx:bloc id="member">
+            <tr mXattribut="id:idmember;class:class">
+                <td mXattribut="id:idname;"><mx:text id="name" /></td>
+                <td mXattribut="id:idprenom;"><mx:text id="prenom" /></td>
+                <td mXattribut="id:idlogin;"><mx:text id="login" /></td>
+                <td mXattribut="id:idmail;"><mx:text id="mail" /></td>
+                <td mXattribut="id:iddatecrea;"><mx:text id="date_crea" /></td>
+                <td>
+                    <a mXattribut="href:actionUpdate;"><span><mx:text id="updateString" /></span></a>
+                    <a class="deleteLink" mXattribut="onclick:onclick;"><span><mx:text id="deleteString" /></span></a>
+                    <span><mx:text id="memberDisabledInfo" /></span>
+                </td>
+            </tr>
+        </mx:bloc id="member">
+        </tbody>
+    </table>
+</mx:bloc id="members">

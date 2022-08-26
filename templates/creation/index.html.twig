@@ -1,0 +1,482 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/addon.css') }}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(creationForm,{'attr': {'novalidate': 'novalidate'}}) }}
+<div class="container_form">
+
+    <div class="image">
+        <img src={{ asset("./images/medialibs.jpg") }} alt="logo" width="80"/>
+    </div>
+<div class="titre">
+            <h1>Générateur d'add-on pour les développements Medialibs</h1>
+</div>
+<div class="form">
+    <div class = "form-group">
+            {{form_errors (creationForm.nomAddOn) }}
+                <label for="{{ creationForm.nomAddOn.vars.id }}">Nom de l'Add-On:</label>
+                <input type="text" style="border: solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;"placeholder="Nom de l'add-on" class="form-control" id="{{ creationForm.nomAddOn.vars.id }}" name="{{ creationForm.nomAddOn.vars.full_name }}" value="{{ creationForm.nomAddOn.vars.value }}">
+                {% do creationForm.nomAddOn.setRendered %}
+        </div>
+    <div class = "form-group">
+            {{ form_errors (creationForm.descriptionAddOn) }}
+                <label for="{{ creationForm.descriptionAddOn.vars.id }}">Description de l'Add-On:</label>
+                <input type="text" style="border: solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Description de l'add-on" class="form-control" id="{{ creationForm.descriptionAddOn.vars.id }}" name="{{ creationForm.descriptionAddOn.vars.full_name }}" value="{{ creationForm.descriptionAddOn.vars.value }}">
+                {% do creationForm.descriptionAddOn.setRendered %}
+        </div>
+    <div class = "form-group">
+            {{ form_errors(creationForm.identifiantAddOn) }}
+               <label for="{{ creationForm.identifiantAddOn.vars.id}}">Identifiant de l'Add-On:</label>
+                <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Identifiant de l'add-on" class="form-control" id="{{ creationForm.identifiantAddOn.vars.id }}" name="{{ creationForm.identifiantAddOn.vars.full_name }}" value="{{ creationForm.identifiantAddOn.vars.value }}">
+                {% do creationForm.identifiantAddOn.setRendered %}
+        </div>
+    <div class = "form-group">
+            {{ form_errors(creationForm.nomDeveloppeur) }}
+            <label for="{{ creationForm.nomDeveloppeur.vars.id }}">Nom du Developpeur:</label>
+                <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Nom du Developpeur" class="form-control" id="{{ creationForm.nomDeveloppeur.vars.id }}" name="{{ creationForm.nomDeveloppeur.vars.full_name }}" value="{{ creationForm.nomDeveloppeur.vars.value }}">
+                {% do creationForm.nomDeveloppeur.setRendered %}
+        </div>
+    <div class = "form-group">
+            {{ form_errors(creationForm.dateDeCreation) }}
+          <label for="{{ creationForm.dateDeCreation.vars.id }}">Date de création:</label>
+            <input type="date" style="border : solid 1px #ea6169; width: 100%;
+                   height: 80px; border-radius:10px;"  class="form-control" id="{{ creationForm.dateDeCreation.vars.id }}" name="{{ creationForm.dateDeCreation.vars.full_name }}" value="{{ creationForm.dateDeCreation.vars.value }}">
+            {% do creationForm.dateDeCreation.setRendered %}
+        </div>
+
+    <div class="row">
+        <label for="checkbox" id="checkbox">Les dossiers qui devront être disponibles dans l'add-on :</label>
+        <div class="col-sm-6 last">
+
+                {% for checkbox in creationForm.checkbox %}
+                      {{ form_label(checkbox) }} {{ form_widget(checkbox)}}
+                {% endfor %}
+          </div>
+    </div>
+
+
+
+</div>
+
+
+    <div class="mx-auto" style="width: 100px;">
+        <button type="submit" class="btn btn-primary" name="valider"  style="background-color: indigo">Valider</button>
+    </div>
+
+
+</div>
+    <div id="actionsContainer" class="hidden">
+
+        <label for="{{ creationForm.identifiantAction.vars.id }}">Types d'actions</label>
+                     {% for typeAction in creationForm.typeAction%}
+                        {{ form_label(typeAction) }} {{ form_widget(typeAction) }}
+                       {% endfor%}
+            <label for="{{ creationForm.identifiantAction.vars.id }}">Identifiant de l'action</label>
+            <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="MyFirstAction" class="form-control" id="{{ creationForm.identifiantAction.vars.id }}" name="{{ creationForm.identifiantAction.vars.full_name }}" value="{{ creationForm.identifiantAction.vars.value }}">
+            {% do creationForm.identifiantAction.setRendered %}
+        </div>
+
+    <div id="notificationContainer" class="hidden">
+
+        <label for="{{ creationForm.nomNotification.vars.id }}">Nom de la notification</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Création d'un membre" class="form-control" id="{{ creationForm.nomNotification.vars.id }}" name="{{ creationForm.nomNotification.vars.full_name }}" value="{{ creationForm.nomNotification.vars.value }}">
+        {% do creationForm.nomNotification.setRendered %}
+
+        <label for="{{ creationForm.descriptionNotification.vars.id }}">Description de la notification</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Envoyée aux nouveaux utilisateurs lors..." class="form-control" id="{{ creationForm.descriptionNotification.vars.id }}" name="{{ creationForm.descriptionNotification.vars.full_name }}" value="{{ creationForm.descriptionNotification.vars.value }}">
+        {% do creationForm.descriptionNotification.setRendered %}
+
+        <label for="{{ creationForm.nomClasse.vars.id }}">Nom de la classe</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="MyCustomNotification" class="form-control" id="{{ creationForm.nomClasse.vars.id }}" name="{{ creationForm.nomClasse.vars.full_name }}" value="{{ creationForm.nomClasse.vars.value }}">
+        {% do creationForm.nomClasse.setRendered %}
+
+        {{ form_row(creationForm.notificationAdministrateur) }}
+
+        <label for="{{ creationForm.nomGroupe.vars.id }}">Nom du groupe dans lequel mettre la notification dans le BO</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Compte utilisateur" class="form-control" id="{{ creationForm.nomGroupe.vars.id }}" name="{{ creationForm.nomGroupe.vars.full_name }}" value="{{ creationForm.nomGroupe.vars.value }}">
+        {% do creationForm.nomGroupe.setRendered %}
+
+        <label for="{{ creationForm.position.vars.id }}">Position</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="4" class="form-control" id="{{ creationForm.position.vars.id }}" name="{{ creationForm.position.vars.full_name }}" value="{{ creationForm.position.vars.value }}">
+        {% do creationForm.position.setRendered %}
+    </div>
+
+    <div id="cronsContainer" class="hidden">
+
+    <label for="{{ creationForm.descriptionTacheCron.vars.id }}">Description de la tache planifiée</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Ma tache planifiée" class="form-control" id="{{ creationForm.descriptionTacheCron.vars.id }}" name="{{ creationForm.descriptionTacheCron.vars.full_name }}" value="{{ creationForm.descriptionTacheCron.vars.value }}">
+        {% do creationForm.descriptionTacheCron.setRendered %}
+
+    <label for="{{ creationForm.identifiantCron.vars.id }}">Identifiant</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="MyCron" class="form-control" id="{{ creationForm.identifiantCron.vars.id }}" name="{{ creationForm.identifiantCron.vars.full_name }}" value="{{ creationForm.identifiantCron.vars.value }}">
+        {% do creationForm.identifiantCron.setRendered %}
+
+    <label for="{{ creationForm.nomDossierCron.vars.id }}">Nom du dossier</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Nom du dossier" class="form-control" id="{{ creationForm.nomDossierCron.vars.id }}" name="{{ creationForm.nomDossierCron.vars.full_name }}" value="{{ creationForm.nomDossierCron.vars.value }}">
+        {% do creationForm.nomDossierCron.setRendered %}
+
+    <label for="{{ creationForm.nomFichierCron.vars.id }}">Nom du fichier</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Nom du fichier" class="form-control" id="{{ creationForm.nomFichierCron.vars.id }}" name="{{ creationForm.nomFichierCron.vars.full_name }}" value="{{ creationForm.nomFichierCron.vars.value }}">
+        {% do creationForm.nomFichierCron.setRendered %}
+    </div>
+
+    <div id="mxContainer" class="hidden">
+
+     <label for="{{ creationForm.descriptionMx.vars.id }}">Description de la balise mx</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Ma balise mx personnalisée" class="form-control" id="{{ creationForm.descriptionMx.vars.id }}" name="{{ creationForm.descriptionMx.vars.full_name }}" value="{{ creationForm.descriptionMx.vars.value }}">
+        {% do creationForm.descriptionMx.setRendered %}
+
+     <label for="{{ creationForm.identifiantMx.vars.id }}">Identifiant de la balise mx</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="myMembers" class="form-control" id="{{ creationForm.identifiantMx.vars.id }}" name="{{ creationForm.identifiantMx.vars.full_name }}" value="{{ creationForm.identifiantMx.vars.value }}">
+        {% do creationForm.identifiantMx.setRendered %}
+    </div>
+
+    <div id="publicationMethodeContainer" class="hidden">
+
+        <label for="{{ creationForm.nomMethodePublication.vars.id }}">Nom de la méthode de publication</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="Ma page personnalisée" class="form-control" id="{{ creationForm.nomMethodePublication.vars.id }}" name="{{ creationForm.nomMethodePublication.vars.full_name }}" value="{{ creationForm.nomMethodePublication.vars.value }}">
+        {% do creationForm.nomMethodePublication.setRendered %}
+
+        <label for="{{ creationForm.identifiantMethodePublication.vars.id }}">Identifiant de la méthode de publication</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="customPage" class="form-control" id="{{ creationForm.identifiantMethodePublication.vars.id }}" name="{{ creationForm.identifiantMethodePublication.vars.full_name }}" value="{{ creationForm.identifiantMethodePublication.vars.value }}">
+        {% do creationForm.identifiantMethodePublication.setRendered %}
+
+        <label for="{{ creationForm.typeMethodePublication.vars.id }}">Types de méthode de publication</label>
+        {% for typeMethodePublication in creationForm.typeMethodePublication%}
+            {{ form_label(typeMethodePublication) }} {{ form_widget(typeMethodePublication) }}
+        {% endfor%}
+    </div>
+
+    <div id="widgetContainer" class="hidden">
+
+        <label for="{{ creationForm.nomWidget.vars.id }}">Nom du widget</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="sélection du moment" class="form-control" id="{{ creationForm.nomWidget.vars.id }}" name="{{ creationForm.nomWidget.vars.full_name }}" value="{{ creationForm.nomWidget.vars.value }}">
+        {% do creationForm.nomWidget.setRendered %}
+
+        <label for="{{ creationForm.identifiantWidget.vars.id }}">Identifiant du widget</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="currentSelections" class="form-control" id="{{ creationForm.identifiantWidget.vars.id }}" name="{{ creationForm.identifiantWidget.vars.full_name }}" value="{{ creationForm.identifiantWidget.vars.value }}">
+        {% do creationForm.identifiantWidget.setRendered %}
+    </div>
+
+    <div id="menu2CAvecCrudContainer" class="hidden">
+
+        <label for="{{ creationForm.selectionEcran.vars.id }}">Sélection dans laquelle ajouter le nouvel écran</label>
+        <select id="generateur[selectionEcran]" style="border : solid 1px #ea6169; width: 100%; height: 80px;border-radius:10px;">
+            <option value="Mon site/Configuration">Mon site/Configuration</option>
+            <option value="Mon site/Notifications">Mon site/Notifications</option>
+            <option value="Mes ressources/Configuration">Mes ressources/Configuration</option>
+            <option value="Ma boutique/Commandes">Ma boutique/Commandes</option>
+            <option value="Ma boutique/Booster les ventes">Ma boutique/Booster les ventes</option>
+            <option value="Statistiques/Catalogue">Statistiques/Catalogue</option>
+            <option value="Ma boutique/Configuration">Ma boutique/Configuration</option>
+            <option value="Petites annonces/Configuration">Petites annonces/Configuration</option>
+            <option value="Annuaires/Configuration">Annuaires/Configuration</option>
+            <option value="Blog/Configuration">Blog/Configuration</option>
+            <option value="Statistiques/Référencement">Statistiques/Référencement</option>
+            <option value="Référencement/Configuration globale">Référencement/Configuration globale</option>
+            <option value="Newsletter/Liste de diffusion">Newsletter/Liste de diffusion</option>
+            <option value="Statistiques/Newsletter">Statistiques/Newsletter</option>
+            <option value="Newsletter/Configuration">Newsletter/Configuration</option>
+            <option value="Communauté/Configuration">Communauté/Configuration</option>
+            <option value="Administrateur/Configuration">Administrateur/Configuration</option>
+            <option value="Forum/Configuration">Forum/Configuration</option>
+            <option value="Mes outils/quotas">Mes outils/quotas</option>
+            <option value="Mes outils/Mes préférences">Mes outils/Mes préférences</option>
+        </select>
+        {% do creationForm.selectionEcran.setRendered %}
+
+        <label for="{{ creationForm.descriptionMenu.vars.id }}">Description du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.descriptionMenu.vars.id }}" name="{{ creationForm.descriptionMenu.vars.full_name }}" value="{{ creationForm.descriptionMenu.vars.value }}">
+        {% do creationForm.descriptionMenu.setRendered %}
+
+        <label for="{{ creationForm.categorieMenu.vars.id }}">Catégorie du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.categorieMenu.vars.id }}" name="{{ creationForm.categorieMenu.vars.full_name }}" value="{{ creationForm.categorieMenu.vars.value }}">
+        {% do creationForm.categorieMenu.setRendered %}
+
+        <label for="{{ creationForm.nomMenu.vars.id }}">Nom du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.nomMenu.vars.id }}" name="{{ creationForm.nomMenu.vars.full_name }}" value="{{ creationForm.nomMenu.vars.value }}">
+        {% do creationForm.nomMenu.setRendered %}
+
+        <label for="{{ creationForm.nomCrud.vars.id }}">Nom du CRUD</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="PlatesCRUD" class="form-control" id="{{ creationForm.nomCrud.vars.id }}" name="{{ creationForm.nomCrud.vars.full_name }}" value="{{ creationForm.nomCrud.vars.value }}">
+        {% do creationForm.nomCrud.setRendered %}
+
+    </div>
+
+    <div id="menu2CAvecFormContainer" class="hidden">
+
+        <label for="{{ creationForm.sectionEcran.vars.id }}">Section dans laquelle ajouter le nouvel écran</label>
+        <select id="generateur[sectionEcran]" style="border : solid 1px #ea6169; width: 100%; height: 80px;border-radius:10px;">
+            <option value="Mon site/Configuration">Mon site/Configuration</option>
+            <option value="Mon site/Notifications">Mon site/Notifications</option>
+            <option value="Mes ressources/Configuration">Mes ressources/Configuration</option>
+            <option value="Ma boutique/Commandes">Ma boutique/Commandes</option>
+            <option value="Ma boutique/Booster les ventes">Ma boutique/Booster les ventes</option>
+            <option value="Statistiques/Catalogue">Statistiques/Catalogue</option>
+            <option value="Ma boutique/Configuration">Ma boutique/Configuration</option>
+            <option value="Petites annonces/Configuration">Petites annonces/Configuration</option>
+            <option value="Annuaires/Configuration">Annuaires/Configuration</option>
+            <option value="Blog/Configuration">Blog/Configuration</option>
+            <option value="Statistiques/Référencement">Statistiques/Référencement</option>
+            <option value="Référencement/Configuration globale">Référencement/Configuration globale</option>
+            <option value="Newsletter/Liste de diffusion">Newsletter/Liste de diffusion</option>
+            <option value="Statistiques/Newsletter">Statistiques/Newsletter</option>
+            <option value="Newsletter/Configuration">Newsletter/Configuration</option>
+            <option value="Communauté/Configuration">Communauté/Configuration</option>
+            <option value="Administrateur/Configuration">Administrateur/Configuration</option>
+            <option value="Forum/Configuration">Forum/Configuration</option>
+            <option value="Mes outils/quotas">Mes outils/quotas</option>
+            <option value="Mes outils/Mes préférences">Mes outils/Mes préférences</option>
+        </select>
+        {% do creationForm.sectionEcran.setRendered %}
+
+        <label for="{{ creationForm.descriptionMenuForm.vars.id }}">Description du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.descriptionMenuForm.vars.id }}" name="{{ creationForm.descriptionMenuForm.vars.full_name }}" value="{{ creationForm.descriptionMenuForm.vars.value }}">
+        {% do creationForm.descriptionMenuForm.setRendered %}
+
+        <label for="{{ creationForm.categorieMenuForm.vars.id }}">Catégorie du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.categorieMenuForm.vars.id }}" name="{{ creationForm.categorieMenuForm.vars.full_name }}" value="{{ creationForm.categorieMenuForm.vars.value }}">
+        {% do creationForm.categorieMenuForm.setRendered %}
+
+        <label for="{{ creationForm.nomMenuForm.vars.id }}">Nom du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.nomMenuForm.vars.id }}" name="{{ creationForm.nomMenuForm.vars.full_name }}" value="{{ creationForm.nomMenuForm.vars.value }}">
+        {% do creationForm.nomMenuForm.setRendered %}
+
+        <label for="{{ creationForm.nomEcranFormulaire.vars.id }}">Nom du formulaire</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="customForm" class="form-control" id="{{ creationForm.nomEcranFormulaire.vars.id }}" name="{{ creationForm.nomEcranFormulaire.vars.full_name }}" value="{{ creationForm.nomEcranFormulaire.vars.value }}">
+        {% do creationForm.nomEcranFormulaire.setRendered %}
+
+    </div>
+
+    <div id="nouvelleSectionAvecUnCrudContainer" class="hidden">
+
+        <label for="{{ creationForm.sectionEcranCrud.vars.id }}">Section dans laquelle ajouter le nouvel écran</label>
+        <select id="generateur[sectionEcranCrud]" style="border : solid 1px #ea6169; width: 100%; height: 80px;border-radius:10px;">
+            <option value="Mon site">Mon site</option>
+            <option value="Ressources">Ressources</option>
+            <option value="Ma boutique">Ma boutique</option>
+            <option value="Statistiques">Statistiques</option>
+            <option value="Petites annonces">Petites annonces</option>
+            <option value="Annuaires">Annuaires</option>
+            <option value="Blog">Blog</option>
+            <option value="Référencement">Référencement</option>
+            <option value="Newsletter">Newsletter</option>
+            <option value="Communauté">Communauté</option>
+            <option value="Administrateurs">Administrateurs</option>
+            <option value="Forum">Forum</option>
+            <option value="Mes outils">Mes outils</option>
+        </select>
+        {% do creationForm.sectionEcranCrud.setRendered %}
+
+        <label for="{{ creationForm.descriptionMenuSection.vars.id }}">Description du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.descriptionMenuSection.vars.id }}" name="{{ creationForm.descriptionMenuSection.vars.full_name }}" value="{{ creationForm.descriptionMenuSection.vars.value }}">
+        {% do creationForm.descriptionMenuSection.setRendered %}
+
+        <label for="{{ creationForm.categorieMenuSection.vars.id }}">Catégorie du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.categorieMenuSection.vars.id }}" name="{{ creationForm.categorieMenuSection.vars.full_name }}" value="{{ creationForm.categorieMenuSection.vars.value }}">
+        {% do creationForm.categorieMenuSection.setRendered %}
+
+        <label for="{{ creationForm.nomMenuSection.vars.id }}">Nom du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.nomMenuSection.vars.id }}" name="{{ creationForm.nomMenuSection.vars.full_name }}" value="{{ creationForm.nomMenuSection.vars.value }}">
+        {% do creationForm.nomMenuSection.setRendered %}
+
+        <label for="{{ creationForm.nomSectionCrud.vars.id }}">Nom du CRUD</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="PlatesCRUD" class="form-control" id="{{ creationForm.nomSectionCrud.vars.id }}" name="{{ creationForm.nomSectionCrud.vars.full_name }}" value="{{ creationForm.nomSectionCrud.vars.value }}">
+        {% do creationForm.nomSectionCrud.setRendered %}
+
+    </div>
+
+    <div id="nouvelleSectionAvecUnFormulaireContainer" class="hidden">
+
+        <label for="{{ creationForm.sectionMenuFormulaire.vars.id }}">Section dans laquelle ajouter le nouvel écran</label>
+        <select id="generateur[sectionMenuFormulaire]" style="border : solid 1px #ea6169; width: 100%; height: 80px;border-radius:10px;">
+            <option value="Mon site">Mon site</option>
+            <option value="Ressources">Ressources</option>
+            <option value="Ma boutique">Ma boutique</option>
+            <option value="Statistiques">Statistiques</option>
+            <option value="Petites annonces">Petites annonces</option>
+            <option value="Annuaires">Annuaires</option>
+            <option value="Blog">Blog</option>
+            <option value="Référencement">Référencement</option>
+            <option value="Newsletter">Newsletter</option>
+            <option value="Communauté">Communauté</option>
+            <option value="Administrateurs">Administrateurs</option>
+            <option value="Forum">Forum</option>
+            <option value="Mes outils">Mes outils</option>
+        </select>
+        {% do creationForm.sectionMenuFormulaire.setRendered %}
+
+        <label for="{{ creationForm.descriptionMenuFormulaire.vars.id }}">Description du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.descriptionMenuFormulaire.vars.id }}" name="{{ creationForm.descriptionMenuFormulaire.vars.full_name }}" value="{{ creationForm.descriptionMenuFormulaire.vars.value }}">
+        {% do creationForm.descriptionMenuFormulaire.setRendered %}
+
+        <label for="{{ creationForm.categorieMenuFormulaire.vars.id }}">Catégorie du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.categorieMenuFormulaire.vars.id }}" name="{{ creationForm.categorieMenuFormulaire.vars.full_name }}" value="{{ creationForm.categorieMenuFormulaire.vars.value }}">
+        {% do creationForm.categorieMenuFormulaire.setRendered %}
+
+        <label for="{{ creationForm.nomMenuFormulaire.vars.id }}">Nom du menu</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="" class="form-control" id="{{ creationForm.nomMenuFormulaire.vars.id }}" name="{{ creationForm.nomMenuFormulaire.vars.full_name }}" value="{{ creationForm.nomMenuFormulaire.vars.value }}">
+        {% do creationForm.nomMenuFormulaire.setRendered %}
+
+        <label for="{{ creationForm.nomFormulaire.vars.id }}">Nom du CRUD</label>
+        <input type="text" style="border : solid 1px #ea6169; width: 100%; height: 80px; border-radius:10px;" placeholder="customForm" class="form-control" id="{{ creationForm.nomFormulaire.vars.id }}" name="{{ creationForm.nomFormulaire.vars.full_name }}" value="{{ creationForm.nomFormulaire.vars.value }}">
+        {% do creationForm.nomFormulaire.setRendered %}
+
+    </div>
+
+
+
+
+
+
+        {{ form_end(creationForm) }}
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            //On écoute le "click" sur le bouton ayant la classe "modal-trigger"
+            $('#generateur_checkbox_0').on('change',function (e) {
+                let actionContainer = $('#actionsContainer')
+                if(this.checked){
+                    e.target.parentNode.appendChild(actionContainer[0])
+                    actionContainer[0].classList.remove('hidden')
+                    actionContainer[0].classList.add('shown')
+
+                }else{
+                    actionContainer[0].classList.remove('shown')
+                    actionContainer[0].classList.add('hidden')
+                }
+
+            })
+             $('#generateur_checkbox_4').on('change',function (e) {
+                 let notificationContainer = $('#notificationContainer')
+                 if(this.checked){
+                     e.target.parentNode.appendChild(notificationContainer[0])
+                   notificationContainer[0].classList.remove('hidden')
+                   notificationContainer[0].classList.add('shown')
+                 }else{
+                     notificationContainer[0].classList.remove('shown')
+                     notificationContainer[0].classList.add('hidden')
+                 }
+
+             })
+
+
+
+
+              $('#generateur_checkbox_5').on('change',function (e) {
+                 let cronsContainer = $('#cronsContainer')
+                 if(this.checked){
+                     e.target.parentNode.appendChild(cronsContainer[0])
+                   cronsContainer[0].classList.remove('hidden')
+                   cronsContainer[0].classList.add('shown')
+                 }else{
+                     cronsContainer[0].classList.remove('shown')
+                     cronsContainer[0].classList.add('hidden')
+                 }
+
+             })
+
+             $('#generateur_checkbox_8').on('change',function (e) {
+                 let mxContainer = $('#mxContainer')
+                 if(this.checked){
+                     e.target.parentNode.appendChild(mxContainer[0])
+                   mxContainer[0].classList.remove('hidden')
+                   mxContainer[0].classList.add('shown')
+                 }else{
+                     mxContainer[0].classList.remove('shown')
+                     mxContainer[0].classList.add('hidden')
+                 }
+
+             })
+
+            $('#generateur_checkbox_9').on('change',function (e) {
+                let publicationMethodeContainer = $('#publicationMethodeContainer')
+                if(this.checked){
+                    e.target.parentNode.appendChild(publicationMethodeContainer[0])
+                    publicationMethodeContainer[0].classList.remove('hidden')
+                    publicationMethodeContainer[0].classList.add('shown')
+                }else{
+                    publicationMethodeContainer[0].classList.remove('shown')
+                    publicationMethodeContainer[0].classList.add('hidden')
+                }
+
+            })
+
+            $('#generateur_checkbox_10').on('change',function (e) {
+                let widgetContainer = $('#widgetContainer')
+                if(this.checked){
+                    e.target.parentNode.appendChild(widgetContainer[0])
+                    widgetContainer[0].classList.remove('hidden')
+                    widgetContainer[0].classList.add('shown')
+                }else{
+                    widgetContainer[0].classList.remove('shown')
+                    widgetContainer[0].classList.add('hidden')
+                }
+
+            })
+
+            $('#generateur_checkbox_11').on('change',function (e) {
+                let menu2CAvecCrudContainer = $('#menu2CAvecCrudContainer')
+                if(this.checked){
+                    e.target.parentNode.appendChild(menu2CAvecCrudContainer[0])
+                    menu2CAvecCrudContainer[0].classList.remove('hidden')
+                    menu2CAvecCrudContainer[0].classList.add('shown')
+                }else{
+                    menu2CAvecCrudContainer[0].classList.remove('shown')
+                    menu2CAvecCrudContainer[0].classList.add('hidden')
+                }
+
+            })
+
+            $('#generateur_checkbox_12').on('change',function (e) {
+                let menu2CAvecFormContainer = $('#menu2CAvecFormContainer')
+                if(this.checked){
+                    e.target.parentNode.appendChild(menu2CAvecFormContainer[0])
+                    menu2CAvecFormContainer[0].classList.remove('hidden')
+                    menu2CAvecFormContainer[0].classList.add('shown')
+                }else{
+                    menu2CAvecFormContainer[0].classList.remove('shown')
+                    menu2CAvecFormContainer[0].classList.add('hidden')
+                }
+
+            })
+
+            $('#generateur_checkbox_13').on('change',function (e) {
+                let sectionCrudContainer = $('#nouvelleSectionAvecUnCrudContainer')
+                if(this.checked){
+                    e.target.parentNode.appendChild(sectionCrudContainer[0])
+                    sectionCrudContainer[0].classList.remove('hidden')
+                    sectionCrudContainer[0].classList.add('shown')
+                }else{
+                    sectionCrudContainer[0].classList.remove('shown')
+                    sectionCrudContainer[0].classList.add('hidden')
+                }
+
+            })
+
+            $('#generateur_checkbox_14').on('change',function (e) {
+                let nouvelleSectionAvecUnFormulaireContainer = $('#nouvelleSectionAvecUnFormulaireContainer')
+                if(this.checked){
+                    e.target.parentNode.appendChild(nouvelleSectionAvecUnFormulaireContainer[0])
+                    nouvelleSectionAvecUnFormulaireContainer[0].classList.remove('hidden')
+                    nouvelleSectionAvecUnFormulaireContainer[0].classList.add('shown')
+                }else{
+                    nouvelleSectionAvecUnFormulaireContainer[0].classList.remove('shown')
+                    nouvelleSectionAvecUnFormulaireContainer[0].classList.add('hidden')
+                }
+
+            })
+
+        });
+
+    </script>
+{% endblock %}

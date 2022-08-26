@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<method>
+  <config>
+    <name/>
+    <template>widget.html</template>
+    <scriptmanage>/widgetManage.class.php</scriptmanage>
+    <scriptpublic>/widget.class.php</scriptpublic>
+    <methodset>_specifique_</methodset>
+  </config>
+</method>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<method>
+  <config>
+    <name/>
+    <methodset>_specifique_</methodset>
+    <scriptmanage>/methodeManage.class.php</scriptmanage>
+    <scriptpublic>/methodePublic.class.php</scriptpublic>
+  </config>
+</method>

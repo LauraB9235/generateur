@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<method>
+  <config>
+    <name>test5</name>
+    <template>widgetTest6.html</template>
+    <scriptmanage>test6/widgetManageTest6.class.php</scriptmanage>
+    <scriptpublic>test6/widgetTest6.class.php</scriptpublic>
+    <methodset>_specifique_</methodset>
+  </config>
+</method>

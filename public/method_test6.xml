@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<method>
+  <config>
+    <name>test5</name>
+    <methodset>_specifique_</methodset>
+    <scriptmanage>test6/methodeManagetest6.class.php</scriptmanage>
+    <scriptpublic>test6/methodePublictest6.class.php</scriptpublic>
+  </config>
+</method>

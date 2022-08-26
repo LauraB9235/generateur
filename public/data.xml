@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <title>test</title>
+  <name>test2</name>
+  <version>
+    <num date="2021-07-06">1</num>
+  </version>
+  <emajine_compatibility>
+    <min-version>2.13a</min-version>
+  </emajine_compatibility>
+  <webo_shop_info>
+    <key/>
+    <url/>
+    <author>
+      <name><![CDATA[laura]]></name>
+      <email/>
+    </author>
+  </webo_shop_info>
+  <description><![CDATA[test1]]></description>
+  <compatibility><![CDATA[e-majine 2.13a et +]]></compatibility>
+</data>

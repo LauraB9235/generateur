@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emajine_specif>
+  <libelle/>
+  <parent/>
+  <script>addons/test/class/menus/new/menuNew.class.php</script>
+</emajine_specif>

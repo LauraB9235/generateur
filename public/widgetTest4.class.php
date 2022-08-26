@@ -1,0 +1,33 @@
+<?php
+namespace Addon\test2;
+/**
+ * Gestion du widget "Test3"
+ *
+ * @author  [Laura]  <[name]@Medialibs.com>
+ *
+ */
+ class widgetTest4
+ {
+
+     // Variable contenant un contenu prévu pour s'afficher dans la zone de contenu
+     private $contentZone = '';
+     private $title  = '';
+
+    /**
+     * Constructeur
+     */
+     function __construct($parent, $title)
+     {
+         $this->title = $title;
+     }
+
+    /**
+     * Gestion et affichage du widget
+     *
+     * @return string
+     */
+     public function start()
+     {
+         // Your code here
+     }
+}
